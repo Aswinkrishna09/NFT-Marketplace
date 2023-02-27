@@ -5,8 +5,27 @@ import { NftList } from '@ui'
 import BaseLayout from '@ui/layout/BaseLayout'
 import nfts from '../contents/meta.json'
 import { NftMeta } from '@_types/nft'
+import { useWeb3 } from '@provider/web3'
 
 const Home: NextPage = () => {
+  // const { etherium, providers, contract, isLoading } = useWeb3();
+  const { provider, contract } = useWeb3();
+
+  const getAccounts = async () => {
+    const accounts = await provider!.listAccounts()
+  }
+
+  const getNftInfo = async () => {
+    // console.log("name is ", await contract!.name())
+    // console.log("symbol is ", await contract!.symbol())
+  }
+  if (contract) {
+    getNftInfo()
+  }
+  if (provider) {
+    getAccounts()
+  }
+
   return (
     <BaseLayout>
       <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
